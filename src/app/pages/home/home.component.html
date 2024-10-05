@@ -1,28 +1,69 @@
 <div class="home">
-  <form [formGroup]="form" class="form-data">
-    <mat-form-field appearance="fill" class="field">
-      <mat-label>Descrição</mat-label>
-      <input
-        formControlName="description"
-        matInput
-        placeholder="Parcela do carro" />
-    </mat-form-field>
+  <section class="info-values">
+    <div class="entries">
+      <span class="key">Entradas:</span>
+      <span class="value">
+        {{ 10000 | currency : 'BRL' : 'symbol' : '1.2-2' }}
+      </span>
+    </div>
+    <div class="exits">
+      <span class="key">Saídas:</span>
+      <span class="value">
+        {{ 5000 | currency : 'BRL' : 'symbol' : '1.2-2' }}
+      </span>
+    </div>
+    <div class="total">
+      <span class="key">Total:</span>
+      <span class="value">
+        {{ 8000 | currency : 'BRL' : 'symbol' : '1.2-2' }}
+      </span>
+    </div>
+  </section>
 
-    <mat-form-field appearance="fill" class="field">
-      <mat-label>Valor</mat-label>
-      <input formControlName="value" matInput placeholder="R$ 1.000,00" />
-    </mat-form-field>
+  <section class="input-section">
+    <form [formGroup]="form" class="form-data">
+      <mat-form-field appearance="fill" class="field">
+        <mat-label>Descrição</mat-label>
+        <input
+          formControlName="description"
+          matInput
+          placeholder="Parcela do carro" />
+        <mat-error *ngIf="form.controls['description'].errors">
+          Descrição é <strong>obrigatória</strong>
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill" class="field">
-      <mat-label>Entrada/Saída</mat-label>
-      <mat-select formControlName="type">
-        <mat-option value="entrada"> Entrada </mat-option>
-        <mat-option value="saida"> Saída </mat-option>
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field appearance="fill" class="field">
+        <mat-label>Valor</mat-label>
+        <input
+          formControlName="valueInput"
+          matInput
+          placeholder="R$ 1.000,00" />
+        <mat-error *ngIf="form.controls['valueInput'].errors">
+          Valor é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-form-field>
 
-    <button mat-raised-button [disabled]="formErrors" (click)="save()">
-      Salvar
-    </button>
-  </form>
+      <mat-form-field appearance="fill" class="field">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="entrada"> Entrada </mat-option>
+          <mat-option value="saida"> Saída </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls['type'].errors">
+          Tipo é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+    <div class="btn-container">
+      <button
+        class="btn-save"
+        mat-raised-button
+        [disabled]="formErrors"
+        (click)="save()">
+        Salvar
+      </button>
+    </div>
+  </section>
 </div>

@@ -1,15 +1,63 @@
 .home {
   padding: 1rem;
 
-  .form-data {
+  .info-values {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
+    justify-content: space-evenly;
 
-    .field {
-        padding-top: 1rem;
+    .entries,
+    .exits,
+    .total {
+      display: flex;
+      flex-direction: column;
+
+      .key {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .value {
+        font-size: 16px;
+        font-weight: 200;
+      }
     }
+  }
+
+  .input-section {
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 12px;
+    border: 1px solid gray;
+
+    .form-data {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+
+      .field {
+        width: 100%;
+        padding-top: 1rem;
+      }
+    }
+
+    .btn-container {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      justify-content: center;
+
+      .btn-save {
+        width: 80%;
+      }
+    }
+  }
+
+  ::ng-deep .mat-form-field-subscript-wrapper {
+    padding: 0;
   }
 }

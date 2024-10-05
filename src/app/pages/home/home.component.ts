@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   get formErrors() {
     return (
       this.form.controls['description'].errors ||
-      this.form.controls['value'].errors ||
+      this.form.controls['valueInput'].errors ||
       this.form.controls['type'].errors
     );
   }
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   private createForm() {
     this.form = this.fb.group({
       description: ['', Validators.required],
-      value: ['', Validators.required],
+      valueInput: ['', Validators.required],
       type: ['', Validators.required],
     });
   }
