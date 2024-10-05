@@ -1,0 +1,22 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "html.format.wrapAttributes": "force-aligned",
+  "html.format.wrapLineLength": 150,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always",
+      "source.fixAll": "always"
+    },
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always",
+      "source.fixAll": "always",
+      "source.organizeImports": "always"
+    },
+    "editor.formatOnSave": true
+  }
+}
