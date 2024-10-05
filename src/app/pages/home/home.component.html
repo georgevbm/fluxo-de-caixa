@@ -1,4 +1,6 @@
 <div class="home">
+  <app-month-navigate class="select-month"></app-month-navigate>
+
   <section class="info-values">
     <div class="entries">
       <span class="key">Entradas:</span>
@@ -21,49 +23,60 @@
   </section>
 
   <section class="input-section">
-    <form [formGroup]="form" class="form-data">
-      <mat-form-field appearance="fill" class="field">
-        <mat-label>Descrição</mat-label>
-        <input
-          formControlName="description"
-          matInput
-          placeholder="Parcela do carro" />
-        <mat-error *ngIf="form.controls['description'].errors">
-          Descrição é <strong>obrigatória</strong>
-        </mat-error>
-      </mat-form-field>
+    <app-form-launche (formDataEmit)="save($event)"></app-form-launche>
+  </section>
 
-      <mat-form-field appearance="fill" class="field">
-        <mat-label>Valor</mat-label>
-        <input
-          formControlName="valueInput"
-          matInput
-          placeholder="R$ 1.000,00" />
-        <mat-error *ngIf="form.controls['valueInput'].errors">
-          Valor é <strong>obrigatório</strong>
-        </mat-error>
-      </mat-form-field>
+  <h2 class="title-h2">Lançamentos de Janeiro</h2>
 
-      <mat-form-field appearance="fill" class="field">
-        <mat-label>Tipo</mat-label>
-        <mat-select formControlName="type">
-          <mat-option value="entrada"> Entrada </mat-option>
-          <mat-option value="saida"> Saída </mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.controls['type'].errors">
-          Tipo é <strong>obrigatório</strong>
-        </mat-error>
-      </mat-form-field>
-    </form>
+  <section class="launches">
+    <mat-card class="card-launche">
+      <div class="card-info">
+        <div class="card-avatar entrie">
+          <mat-icon class="icon">arrow_downward</mat-icon>
+        </div>
 
-    <div class="btn-container">
-      <button
-        class="btn-save"
-        mat-raised-button
-        [disabled]="formErrors"
-        (click)="save()">
-        Salvar
-      </button>
-    </div>
+        <div class="card-details">
+          <span class="card-title">Parcela do carro</span>
+          <span class="card-value">
+            {{ 10000 | currency : 'BRL' : 'symbol' : '1.2-2' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <button mat-icon-button color="primary" (click)="openDialog()">
+          <mat-icon class="icon">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="primary">
+          <mat-icon class="icon">delete</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+
+    <mat-card class="card-launche">
+      <div class="card-info">
+        <div class="card-avatar exit">
+          <mat-icon class="icon">arrow_upward</mat-icon>
+        </div>
+
+        <div class="card-details">
+          <span class="card-title">Parcela do carro</span>
+          <span class="card-value">
+            {{ 10000 | currency : 'BRL' : 'symbol' : '1.2-2' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <button mat-icon-button color="primary">
+          <mat-icon class="icon">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="primary">
+          <mat-icon class="icon">delete</mat-icon>
+        </button>
+      </div>
+    </mat-card>
   </section>
 </div>

@@ -1,0 +1,49 @@
+<form [formGroup]="form" class="form-data">
+  <mat-form-field appearance="fill" class="field">
+    <mat-label>Descrição</mat-label>
+    <input
+      formControlName="description"
+      matInput
+      placeholder="Parcela do carro" />
+    <mat-error *ngIf="form.controls['description'].errors">
+      Descrição é <strong>obrigatória</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="field">
+    <mat-label>Valor</mat-label>
+    <input formControlName="valueInput" matInput placeholder="R$ 1.000,00" />
+    <mat-error *ngIf="form.controls['valueInput'].errors">
+      Valor é <strong>obrigatório</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="field">
+    <mat-label>Tipo</mat-label>
+    <mat-select formControlName="type">
+      <mat-option value="entrada"> Entrada </mat-option>
+      <mat-option value="saida"> Saída </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.controls['type'].errors">
+      Tipo é <strong>obrigatório</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+
+<div class="btn-container">
+  <button
+    *ngIf="showCancelButton"
+    class="btn-cancel"
+    mat-raised-button
+    (click)="formDataEmit.emit()">
+    Cancelar
+  </button>
+
+  <button
+    class="btn-save"
+    mat-raised-button
+    [disabled]="formErrors"
+    (click)="formDataEmit.emit(form.value)">
+    Salvar
+  </button>
+</div>

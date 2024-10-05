@@ -1,37 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEditLaunche } from 'src/app/shared/components/dialog-edit-launche/dialog-edit-launche.component';
+import { FormLaunche } from 'src/app/shared/interfaces/form-launche.interface';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  form!: FormGroup;
+export class HomeComponent {
+  constructor(public dialog: MatDialog) {}
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit() {
-    this.createForm();
+  save(event: FormLaunche) {
+    console.log(event);
   }
 
-  get formErrors() {
-    return (
-      this.form.controls['description'].errors ||
-      this.form.controls['valueInput'].errors ||
-      this.form.controls['type'].errors
-    );
-  }
-
-  private createForm() {
-    this.form = this.fb.group({
-      description: ['', Validators.required],
-      valueInput: ['', Validators.required],
-      type: ['', Validators.required],
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogEditLaunche, {
+      width: '100%',
+      height: 'fit-content',
+      data: {},
     });
-  }
 
-  save() {
-    console.log(this.form.value);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }
