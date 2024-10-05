@@ -1,0 +1,28 @@
+<div class="home">
+  <form [formGroup]="form" class="form-data">
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Descrição</mat-label>
+      <input
+        formControlName="description"
+        matInput
+        placeholder="Parcela do carro" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Valor</mat-label>
+      <input formControlName="value" matInput placeholder="R$ 1.000,00" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Entrada/Saída</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="entrada"> Entrada </mat-option>
+        <mat-option value="saida"> Saída </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button [disabled]="formErrors" (click)="save()">
+      Salvar
+    </button>
+  </form>
+</div>
