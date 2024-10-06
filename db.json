@@ -1,0 +1,100 @@
+{
+  "months": [
+    {
+      "month": "Setembro",
+      "year": "2024"
+    },
+    {
+      "month": "Outubro",
+      "year": "2024"
+    },
+    {
+      "month": "Novembro",
+      "year": "2024"
+    },
+    {
+      "month": "Dezembro",
+      "year": "2024"
+    },
+    {
+      "month": "Janeiro",
+      "year": "2025"
+    }
+  ],
+  "setembro2024": {
+    "month": "Setembro",
+    "year": "2024",
+    "launches": [
+      {
+        "id": 1,
+        "description": "Mercado",
+        "value": 1000,
+        "type": "saida"
+      }
+    ]
+  },
+  "outubro2024": {
+    "month": "Setembro",
+    "year": "2024",
+    "launches": [
+      {
+        "description": "Salario",
+        "value": "5500",
+        "type": "entrada"
+      }
+    ]
+  },
+  "novembro2024": {
+    "month": "Novembro",
+    "year": "2024",
+    "launches": [
+      {
+        "id": 1,
+        "description": "Entrada do Carro",
+        "value": 10000,
+        "type": "saida"
+      },
+      {
+        "id": 2,
+        "description": "Mercado",
+        "value": 1000,
+        "type": "saida"
+      },
+      {
+        "id": 3,
+        "description": "Salario",
+        "value": 12000,
+        "type": "entrada"
+      }
+    ]
+  },
+  "dezembro2024": {
+    "month": "Dezembro",
+    "year": "2024",
+    "launches": [
+      {
+        "id": 1,
+        "description": "Entrada do Carro",
+        "value": 10000,
+        "type": "saida"
+      },
+      {
+        "id": 2,
+        "description": "Mercado",
+        "value": 1000,
+        "type": "saida"
+      },
+      {
+        "id": 3,
+        "description": "Salario",
+        "value": 12000,
+        "type": "entrada"
+      }
+    ]
+  },
+  "janeiro2025": {
+    "month": "Janeiro",
+    "year": "2025",
+    "launches": []
+  }
+}

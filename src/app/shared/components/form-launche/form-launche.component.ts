@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormLaunche } from '../../interfaces/form-launche.interface';
+import { Launche } from '../../interfaces/launches.interface';
 
 @Component({
   selector: 'app-form-launche',
@@ -9,36 +9,52 @@ import { FormLaunche } from '../../interfaces/form-launche.interface';
 })
 export class FormLauncheComponent implements OnInit {
   @Input() showCancelButton = false;
-  @Input() formData!: FormLaunche;
-  @Output() formDataEmit = new EventEmitter<FormLaunche>();
+  @Input() formData!: Launche;
+  @Output() formDataEmit = new EventEmitter<Launche>();
 
   form!: FormGroup;
 
   constructor(private fb: FormBuilder) {}
 
+  get descriptionControl() {
+    return this.form.controls['description'];
+  }
+
+  get valueControl() {
+    return this.form.controls['value'];
+  }
+
+  get typeControl() {
+    return this.form.controls['type'];
+  }
+
   ngOnInit() {
     this.createForm();
+
+    this.setFormData('description');
+    this.setFormData('value');
+    this.setFormData('type');
   }
 
   get formErrors() {
     return (
-      this.form.controls['description'].errors ||
-      this.form.controls['valueInput'].errors ||
-      this.form.controls['type'].errors
+      this.descriptionControl.errors ||
+      this.valueControl.errors ||
+      this.typeControl.errors
     );
   }
 
   private createForm() {
     this.form = this.fb.group({
-      description: [this.setFormData('description'), Validators.required],
-      valueInput: [this.setFormData('valueInput'), Validators.required],
-      type: [this.setFormData('type'), Validators.required],
+      description: ['', Validators.required],
+      value: ['', Validators.required],
+      type: ['', Validators.required],
     });
   }
 
-  private setFormData(control: 'description' | 'valueInput' | 'type') {
-    return this.formData
+  private setFormData(control: 'description' | 'value' | 'type') {
+    this.formData
       ? this.form.controls[control].setValue(this.formData[control])
-      : '';
+      : this.form.controls[control].setValue('');
   }
 }

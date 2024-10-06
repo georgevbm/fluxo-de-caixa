@@ -1,0 +1,35 @@
+<mat-card class="card-launche" *ngFor="let launche of launches">
+  <div class="card-info">
+    <div
+      class="card-avatar"
+      [ngClass]="{
+        entrie: launche.type === TypeLauncheEnum.ENTRADA,
+        exit: launche.type === TypeLauncheEnum.SAIDA
+      }">
+      <mat-icon class="icon">{{
+        launche.type === TypeLauncheEnum.ENTRADA
+          ? 'arrow_downward'
+          : 'arrow_upward'
+      }}</mat-icon>
+    </div>
+
+    <div class="card-details">
+      <span class="card-title">
+        {{ launche.description }}
+      </span>
+      <span class="card-value">
+        {{ launche.value | currency : 'BRL' : 'symbol' : '1.2-2' }}
+      </span>
+    </div>
+  </div>
+
+  <div class="card-actions">
+    <button mat-icon-button color="primary" (click)="openDialogEdit(launche)">
+      <mat-icon class="icon">edit</mat-icon>
+    </button>
+
+    <button mat-icon-button color="primary">
+      <mat-icon class="icon">delete</mat-icon>
+    </button>
+  </div>
+</mat-card>

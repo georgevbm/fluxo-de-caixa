@@ -3,17 +3,19 @@
     class="btn btn-previous"
     mat-icon-button
     color="primary"
-    aria-label="Example icon button with a menu icon">
+    (click)="previous()">
     <mat-icon class="icon">arrow_back</mat-icon>
   </button>
 
-  <span class="label"> Janeiro/2024 </span>
+  <span class="label">
+    {{
+      monthsAndYears[currentIndex].month +
+        '/' +
+        monthsAndYears[currentIndex].year
+    }}
+  </span>
 
-  <button
-    class="btn btn-next"
-    mat-icon-button
-    color="primary"
-    aria-label="Example icon button with a menu icon">
+  <button class="btn btn-next" mat-icon-button color="primary" (click)="next()">
     <mat-icon class="icon">arrow_forward</mat-icon>
   </button>
 </div>

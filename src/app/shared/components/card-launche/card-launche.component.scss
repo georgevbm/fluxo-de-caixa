@@ -1,0 +1,50 @@
+.card-launche {
+  display: flex;
+  justify-content: space-between;
+
+  .card-info {
+    display: flex;
+
+    .card-avatar {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #ffffff;
+
+      &.entrie {
+        background-color: green;
+      }
+
+      &.exit {
+        background-color: red;
+      }
+    }
+
+    .card-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0.2rem 0 0 0.5rem;
+
+      .card-title {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+      }
+
+      .card-value {
+        font-size: 1rem;
+        font-weight: 200;
+      }
+    }
+  }
+
+  .card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

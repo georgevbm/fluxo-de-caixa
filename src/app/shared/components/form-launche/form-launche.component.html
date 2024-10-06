@@ -5,15 +5,15 @@
       formControlName="description"
       matInput
       placeholder="Parcela do carro" />
-    <mat-error *ngIf="form.controls['description'].errors">
+    <mat-error *ngIf="descriptionControl.errors">
       Descrição é <strong>obrigatória</strong>
     </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="field">
     <mat-label>Valor</mat-label>
-    <input formControlName="valueInput" matInput placeholder="R$ 1.000,00" />
-    <mat-error *ngIf="form.controls['valueInput'].errors">
+    <input formControlName="value" matInput placeholder="R$ 1.000,00" />
+    <mat-error *ngIf="valueControl.errors">
       Valor é <strong>obrigatório</strong>
     </mat-error>
   </mat-form-field>
@@ -24,7 +24,7 @@
       <mat-option value="entrada"> Entrada </mat-option>
       <mat-option value="saida"> Saída </mat-option>
     </mat-select>
-    <mat-error *ngIf="form.controls['type'].errors">
+    <mat-error *ngIf="typeControl.errors">
       Tipo é <strong>obrigatório</strong>
     </mat-error>
   </mat-form-field>

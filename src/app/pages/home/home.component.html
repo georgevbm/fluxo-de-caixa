@@ -1,23 +1,29 @@
 <div class="home">
-  <app-month-navigate class="select-month"></app-month-navigate>
+  <app-month-navigate
+    *ngIf="monthsAndYears$ | async as monthsAndYears"
+    [monthsAndYears]="monthsAndYears"
+    (currentMonthAndYears)="getCurrentLaunches($event)">
+  </app-month-navigate>
 
   <section class="info-values">
     <div class="entries">
       <span class="key">Entradas:</span>
       <span class="value">
-        {{ 10000 | currency : 'BRL' : 'symbol' : '1.2-2' }}
+        {{ totalEntries | currency : 'BRL' : 'symbol' : '1.2-2' }}
       </span>
     </div>
+
     <div class="exits">
       <span class="key">Saídas:</span>
       <span class="value">
-        {{ 5000 | currency : 'BRL' : 'symbol' : '1.2-2' }}
+        {{ totalExits | currency : 'BRL' : 'symbol' : '1.2-2' }}
       </span>
     </div>
+
     <div class="total">
       <span class="key">Total:</span>
       <span class="value">
-        {{ 8000 | currency : 'BRL' : 'symbol' : '1.2-2' }}
+        {{ total | currency : 'BRL' : 'symbol' : '1.2-2' }}
       </span>
     </div>
   </section>
@@ -26,57 +32,11 @@
     <app-form-launche (formDataEmit)="save($event)"></app-form-launche>
   </section>
 
-  <h2 class="title-h2">Lançamentos de Janeiro</h2>
+  <h2 class="title-h2">Lançamentos</h2>
 
   <section class="launches">
-    <mat-card class="card-launche">
-      <div class="card-info">
-        <div class="card-avatar entrie">
-          <mat-icon class="icon">arrow_downward</mat-icon>
-        </div>
-
-        <div class="card-details">
-          <span class="card-title">Parcela do carro</span>
-          <span class="card-value">
-            {{ 10000 | currency : 'BRL' : 'symbol' : '1.2-2' }}
-          </span>
-        </div>
-      </div>
-
-      <div class="card-actions">
-        <button mat-icon-button color="primary" (click)="openDialog()">
-          <mat-icon class="icon">edit</mat-icon>
-        </button>
-
-        <button mat-icon-button color="primary">
-          <mat-icon class="icon">delete</mat-icon>
-        </button>
-      </div>
-    </mat-card>
-
-    <mat-card class="card-launche">
-      <div class="card-info">
-        <div class="card-avatar exit">
-          <mat-icon class="icon">arrow_upward</mat-icon>
-        </div>
-
-        <div class="card-details">
-          <span class="card-title">Parcela do carro</span>
-          <span class="card-value">
-            {{ 10000 | currency : 'BRL' : 'symbol' : '1.2-2' }}
-          </span>
-        </div>
-      </div>
-
-      <div class="card-actions">
-        <button mat-icon-button color="primary">
-          <mat-icon class="icon">edit</mat-icon>
-        </button>
-
-        <button mat-icon-button color="primary">
-          <mat-icon class="icon">delete</mat-icon>
-        </button>
-      </div>
-    </mat-card>
+    <app-card-launche [launches]="currentLaunches"></app-card-launche>
   </section>
 </div>
+
+<app-loading *ngIf="isLoading"></app-loading>

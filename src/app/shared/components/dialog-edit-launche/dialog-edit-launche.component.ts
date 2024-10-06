@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormLaunche } from '../../interfaces/form-launche.interface';
+import { Launche } from '../../interfaces/launches.interface';
 
 @Component({
   selector: 'app-dialog-edit-launche',
@@ -9,14 +9,17 @@ import { FormLaunche } from '../../interfaces/form-launche.interface';
 export class DialogEditLaunche {
   constructor(
     public dialogRef: MatDialogRef<DialogEditLaunche>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: Launche
   ) {}
 
-  saveOrCancel(event: FormLaunche) {
-    console.log(event);
-    if (event) {
-    } else {
-      this.dialogRef.close();
-    }
+  saveOrCancel(event: Launche) {
+    const launche: Launche = {
+      id: this.data.id,
+      description: event.description,
+      type: event.type,
+      value: event.value,
+    };
+
+    this.dialogRef.close(launche ? launche : undefined);
   }
 }

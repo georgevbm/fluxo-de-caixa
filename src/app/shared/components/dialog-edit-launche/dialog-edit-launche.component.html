@@ -1,6 +1,9 @@
 <h1 mat-dialog-title>Editar lançamento</h1>
+
 <div mat-dialog-content>
   <app-form-launche
     [showCancelButton]="true"
-    (formDataEmit)="saveOrCancel($event)"></app-form-launche>
+    [formData]="data"
+    (formDataEmit)="saveOrCancel($event)">
+  </app-form-launche>
 </div>

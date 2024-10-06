@@ -1,29 +1,53 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogEditLaunche } from 'src/app/shared/components/dialog-edit-launche/dialog-edit-launche.component';
-import { FormLaunche } from 'src/app/shared/interfaces/form-launche.interface';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TypeLauncheEnum } from 'src/app/shared/enums/type-launch.enum';
+import {
+  Launche,
+  MonthAndYears,
+} from 'src/app/shared/interfaces/launches.interface';
+import { LaunchesService } from 'src/app/shared/services/launches/launches.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
-  constructor(public dialog: MatDialog) {}
+export class HomeComponent implements OnInit {
+  monthsAndYears$!: Observable<MonthAndYears[]>;
+  currentLaunches!: Launche[];
+  isLoading = false;
 
-  save(event: FormLaunche) {
+  totalEntries = 0;
+  totalExits = 0;
+  total = 0;
+
+  constructor(private launchesService: LaunchesService) {}
+
+  ngOnInit() {
+    this.monthsAndYears$ = this.launchesService.getMonthsAndYears();
+  }
+
+  save(event: Launche) {
     console.log(event);
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogEditLaunche, {
-      width: '100%',
-      height: 'fit-content',
-      data: {},
-    });
+  sumTotal(type: TypeLauncheEnum) {
+    const launcheEntries = this.currentLaunches.filter(
+      launche => launche.type === type
+    );
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    });
+    return launcheEntries.reduce((acc, item) => acc + item.value, 0);
+  }
+
+  getCurrentLaunches(monthAndYear: MonthAndYears) {
+    this.launchesService
+      .getLaunchesForMonth(monthAndYear.month, monthAndYear.year)
+      .subscribe(data => {
+        this.currentLaunches = data.launches;
+
+        this.totalEntries = this.sumTotal(TypeLauncheEnum.ENTRADA);
+        this.totalExits = this.sumTotal(TypeLauncheEnum.SAIDA);
+        this.total = this.totalEntries - this.totalExits;
+      });
   }
 }
