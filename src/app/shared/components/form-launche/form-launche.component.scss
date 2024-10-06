@@ -25,3 +25,13 @@
     flex: 1;
   }
 }
+
+@media screen and (max-width: 700px) {
+  .form-data {
+    flex-direction: column;
+
+    .field {
+      padding-top: 0;
+    }
+  }
+}

@@ -41,7 +41,9 @@
       (clickButtonEdit)="openDialogEdit($event)"
       (clickButtonDelete)="openDialogDelete($event)">
     </app-card-launche>
+    <!-- 
+    <div *ngIf="currentLaunches.length === 0" class="empty-launches">
+      Sem lançamentos
+    </div> -->
   </section>
 </div>
-
-<app-loading *ngIf="isLoading"></app-loading>

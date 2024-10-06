@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   monthsAndYears$!: Observable<MonthAndYears[]>;
   currentLaunches!: Launche[];
   currentMonthAndYear!: MonthAndYears;
-  isLoading = false;
 
   totalEntries = 0;
   totalExits = 0;
@@ -34,22 +33,30 @@ export class HomeComponent implements OnInit {
     this.monthsAndYears$ = this.launchesService.getMonthsAndYears();
   }
 
-  save(event: Launche) {
-    console.log(event);
+  private defineTotalValues() {
+    this.totalEntries = this.sumTotal(TypeLauncheEnum.ENTRADA);
+    this.totalExits = this.sumTotal(TypeLauncheEnum.SAIDA);
+    this.total = this.totalEntries - this.totalExits;
+  }
+
+  save(launche: Launche) {
+    this.launchesService
+      .postLaunche(
+        this.currentMonthAndYear.month,
+        this.currentMonthAndYear.year,
+        launche
+      )
+      .subscribe(() => {
+        this.getCurrentLaunches(this.currentMonthAndYear);
+      });
   }
 
   sumTotal(type: TypeLauncheEnum) {
-    if (this.currentLaunches.length > 1) {
-      const launches = this.currentLaunches.filter(
-        launche => launche.type === type
-      );
+    const launches = this.currentLaunches.filter(
+      launche => launche.type === type
+    );
 
-      return launches.reduce((acc, item) => acc + item.value, 0);
-    } else if (this.currentLaunches.length === 1) {
-      return this.currentLaunches[0].value;
-    } else {
-      return 0;
-    }
+    return launches.reduce((acc, item) => acc + Number(item.value), 0);
   }
 
   openDialogEdit(launche: Launche): void {
@@ -99,10 +106,7 @@ export class HomeComponent implements OnInit {
       .getLaunchesForMonth(monthAndYear.month, monthAndYear.year)
       .subscribe(data => {
         this.currentLaunches = data;
-
-        this.totalEntries = this.sumTotal(TypeLauncheEnum.ENTRADA);
-        this.totalExits = this.sumTotal(TypeLauncheEnum.SAIDA);
-        this.total = this.totalEntries - this.totalExits;
+        this.defineTotalValues();
       });
   }
 }

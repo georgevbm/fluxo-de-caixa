@@ -24,11 +24,11 @@ export class LaunchesService {
   postLaunche(
     month: string,
     year: string,
-    launches: Launche[]
+    launche: Launche
   ): Observable<Launche[]> {
     return this.http.post<Launche[]>(
       `${this.apiUrl}/${month.toLowerCase()}${year}`,
-      launches
+      launche
     );
   }
 

@@ -28,18 +28,30 @@
   ],
   "setembro2024": [
     {
-      "id": "1",
-      "description": "Mercado",
-      "type": "saida",
-      "value": "12300"
+      "id": "5156",
+      "description": "George",
+      "value": "12000",
+      "type": "entrada"
+    },
+    {
+      "id": "5b15",
+      "description": "Empréstimo",
+      "value": "300",
+      "type": "entrada"
     }
   ],
   "outubro2024": [
     {
       "id": "1",
-      "description": "George",
+      "description": "Financiamento",
       "type": "saida",
       "value": "5000"
+    },
+    {
+      "id": "8033",
+      "description": "Teste",
+      "value": "8500",
+      "type": "entrada"
     }
   ],
   "novembro2024": [
