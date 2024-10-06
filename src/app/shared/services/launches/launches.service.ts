@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  Launche,
-  Launches,
-  MonthAndYears,
-} from '../../interfaces/launches.interface';
+import { Launche, MonthAndYears } from '../../interfaces/launches.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +15,8 @@ export class LaunchesService {
     return this.http.get<MonthAndYears[]>(`${this.apiUrl}/months`);
   }
 
-  getLaunchesForMonth(month: string, year: string): Observable<Launches> {
-    return this.http.get<Launches>(
+  getLaunchesForMonth(month: string, year: string): Observable<Launche[]> {
+    return this.http.get<Launche[]>(
       `${this.apiUrl}/${month.toLowerCase()}${year}`
     );
   }
@@ -28,33 +24,28 @@ export class LaunchesService {
   postLaunche(
     month: string,
     year: string,
-    launches: Launches
-  ): Observable<Launches> {
-    return this.http.post<Launches>(
+    launches: Launche[]
+  ): Observable<Launche[]> {
+    return this.http.post<Launche[]>(
       `${this.apiUrl}/${month.toLowerCase()}${year}`,
       launches
     );
   }
 
-  putLaunche(
-    month: string,
-    year: string,
-    launches: Launche[]
-  ): Observable<Launches> {
-    return this.http.put<Launches>(
-      `${this.apiUrl}/${month.toLowerCase()}${year}`,
-      launches
+  putLaunche(month: string, year: string, launche: Launche): Observable<any> {
+    return this.http.put<any>(
+      `${this.apiUrl}/${month.toLowerCase()}${year}/${launche.id}`,
+      launche
     );
   }
 
   deleteLaunche(
     month: string,
     year: string,
-    launches: Launches
-  ): Observable<Launches> {
-    return this.http.post<Launches>(
-      `${this.apiUrl}/${month.toLowerCase()}${year}`,
-      launches
+    idLaunche: number
+  ): Observable<Launche[]> {
+    return this.http.delete<Launche[]>(
+      `${this.apiUrl}/${month.toLowerCase()}${year}/${idLaunche}`
     );
   }
 }

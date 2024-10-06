@@ -1,4 +1,4 @@
-<mat-card class="card-launche" *ngFor="let launche of launches">
+<mat-card class="card-launche">
   <div class="card-info">
     <div
       class="card-avatar"
@@ -24,11 +24,17 @@
   </div>
 
   <div class="card-actions">
-    <button mat-icon-button color="primary" (click)="openDialogEdit(launche)">
+    <button
+      mat-icon-button
+      color="primary"
+      (click)="clickButtonEdit.emit(launche)">
       <mat-icon class="icon">edit</mat-icon>
     </button>
 
-    <button mat-icon-button color="primary">
+    <button
+      mat-icon-button
+      color="primary"
+      (click)="clickButtonDelete.emit(launche)">
       <mat-icon class="icon">delete</mat-icon>
     </button>
   </div>

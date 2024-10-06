@@ -35,7 +35,12 @@
   <h2 class="title-h2">Lançamentos</h2>
 
   <section class="launches">
-    <app-card-launche [launches]="currentLaunches"></app-card-launche>
+    <app-card-launche
+      *ngFor="let launche of currentLaunches"
+      [launche]="launche"
+      (clickButtonEdit)="openDialogEdit($event)"
+      (clickButtonDelete)="openDialogDelete($event)">
+    </app-card-launche>
   </section>
 </div>
 

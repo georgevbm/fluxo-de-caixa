@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardLauncheComponent } from './components/card-launche/card-launche.component';
+import { DialogConfirm } from './components/dialog-confirm/dialog-confirm.component';
 import { DialogEditLaunche } from './components/dialog-edit-launche/dialog-edit-launche.component';
 import { FormLauncheComponent } from './components/form-launche/form-launche.component';
 import { LoadingComponent } from './components/loading/loading.component';
@@ -21,6 +22,7 @@ import { MonthNavigateComponent } from './components/month-navigate/month-naviga
     LoadingComponent,
     MonthNavigateComponent,
     DialogEditLaunche,
+    DialogConfirm,
     FormLauncheComponent,
     CardLauncheComponent,
   ],
@@ -39,6 +41,7 @@ import { MonthNavigateComponent } from './components/month-navigate/month-naviga
     LoadingComponent,
     MonthNavigateComponent,
     DialogEditLaunche,
+    DialogConfirm,
     FormLauncheComponent,
     CardLauncheComponent,
   ],

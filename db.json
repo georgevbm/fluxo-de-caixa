@@ -2,99 +2,73 @@
   "months": [
     {
       "month": "Setembro",
-      "year": "2024"
+      "year": "2024",
+      "id": "a638"
     },
     {
       "month": "Outubro",
-      "year": "2024"
+      "year": "2024",
+      "id": "8f5e"
     },
     {
       "month": "Novembro",
-      "year": "2024"
+      "year": "2024",
+      "id": "9aca"
     },
     {
       "month": "Dezembro",
-      "year": "2024"
+      "year": "2024",
+      "id": "4470"
     },
     {
       "month": "Janeiro",
-      "year": "2025"
+      "year": "2025",
+      "id": "6317"
     }
   ],
-  "setembro2024": {
-    "month": "Setembro",
-    "year": "2024",
-    "launches": [
-      {
-        "id": 1,
-        "description": "Mercado",
-        "value": 1000,
-        "type": "saida"
-      }
-    ]
-  },
-  "outubro2024": {
-    "month": "Setembro",
-    "year": "2024",
-    "launches": [
-      {
-        "description": "Salario",
-        "value": "5500",
-        "type": "entrada"
-      }
-    ]
-  },
-  "novembro2024": {
-    "month": "Novembro",
-    "year": "2024",
-    "launches": [
-      {
-        "id": 1,
-        "description": "Entrada do Carro",
-        "value": 10000,
-        "type": "saida"
-      },
-      {
-        "id": 2,
-        "description": "Mercado",
-        "value": 1000,
-        "type": "saida"
-      },
-      {
-        "id": 3,
-        "description": "Salario",
-        "value": 12000,
-        "type": "entrada"
-      }
-    ]
-  },
-  "dezembro2024": {
-    "month": "Dezembro",
-    "year": "2024",
-    "launches": [
-      {
-        "id": 1,
-        "description": "Entrada do Carro",
-        "value": 10000,
-        "type": "saida"
-      },
-      {
-        "id": 2,
-        "description": "Mercado",
-        "value": 1000,
-        "type": "saida"
-      },
-      {
-        "id": 3,
-        "description": "Salario",
-        "value": 12000,
-        "type": "entrada"
-      }
-    ]
-  },
-  "janeiro2025": {
-    "month": "Janeiro",
-    "year": "2025",
-    "launches": []
-  }
+  "setembro2024": [
+    {
+      "id": "1",
+      "description": "Mercado",
+      "type": "saida",
+      "value": "12300"
+    }
+  ],
+  "outubro2024": [
+    {
+      "id": "1",
+      "description": "George",
+      "type": "saida",
+      "value": "5000"
+    }
+  ],
+  "novembro2024": [
+    {
+      "id": "1",
+      "description": "Entrada do Carro",
+      "value": 10000,
+      "type": "saida"
+    },
+    {
+      "id": "2",
+      "description": "PLR",
+      "type": "entrada",
+      "value": "2500"
+    }
+  ],
+  "dezembro2024": [
+    {
+      "id": "1",
+      "description": "Entrada do Carro",
+      "value": 10000,
+      "type": "saida"
+    },
+    {
+      "id": "3",
+      "description": "Salario",
+      "value": 12000,
+      "type": "entrada"
+    }
+  ],
+  "janeiro2025": []
 }
