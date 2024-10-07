@@ -8,6 +8,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { of, throwError } from 'rxjs';
 import { FormLauncheComponent } from '../../shared/components/form-launche/form-launche.component';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { MessageErrors } from '../../shared/enums/message-errors.enum';
 import { TypeLauncheEnum } from '../../shared/enums/type-launch.enum';
 import {
   Launche,
@@ -167,7 +168,7 @@ describe('HomeComponent', () => {
     component.getCurrentLaunches(mockMonthAndYears);
 
     expect(matSnackBarMock.open).toHaveBeenCalledWith(
-      'Erro ao buscar lançamentos, recarregue a página!',
+      MessageErrors.ERROR_FETCH,
       'Ok'
     );
   });
@@ -190,7 +191,7 @@ describe('HomeComponent', () => {
     component.openDialogEdit(mockLaunches[0]);
 
     expect(matSnackBarMock.open).toHaveBeenCalledWith(
-      'Erro ao editar lançamento',
+      MessageErrors.ERROR_EDIT,
       'Ok'
     );
   });
@@ -207,7 +208,7 @@ describe('HomeComponent', () => {
     component.openDialogDelete(mockLaunches[0]);
 
     expect(matSnackBarMock.open).toHaveBeenCalledWith(
-      'Erro ao excluir lançamento',
+      MessageErrors.ERROR_DELETE,
       'Ok'
     );
   });
@@ -221,7 +222,7 @@ describe('HomeComponent', () => {
     component.save(mockLaunches[0]);
 
     expect(matSnackBarMock.open).toHaveBeenCalledWith(
-      'Erro ao criar lançamento',
+      MessageErrors.ERROR_CREATE,
       'Ok'
     );
   });

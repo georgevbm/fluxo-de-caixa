@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { DialogConfirm } from '../../shared/components/dialog-confirm/dialog-confirm.component';
 import { DialogEditLaunche } from '../../shared/components/dialog-edit-launche/dialog-edit-launche.component';
+import { MessageErrors } from '../../shared/enums/message-errors.enum';
 import { TypeLauncheEnum } from '../../shared/enums/type-launch.enum';
 import {
   Launche,
@@ -16,16 +17,18 @@ import { LaunchesService } from '../../shared/services/launches/launches.service
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   monthsAndYears$!: Observable<MonthAndYears[]>;
   currentLaunches!: Launche[];
   currentMonthAndYear!: MonthAndYears;
+
+  isLoading = false;
 
   totalEntries = 0;
   totalExits = 0;
   total = 0;
 
-  isLoading = false;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private launchesService: LaunchesService,
@@ -35,6 +38,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.monthsAndYears$ = this.launchesService.getMonthsAndYears();
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   private defineTotalValues() {
@@ -50,12 +58,13 @@ export class HomeComponent implements OnInit {
         this.currentMonthAndYear.year,
         launche
       )
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
         next: () => {
           this.getCurrentLaunches(this.currentMonthAndYear);
         },
         error: () => {
-          this.snackBar.open('Erro ao criar lançamento', 'Ok');
+          this.snackBar.open(MessageErrors.ERROR_CREATE, 'Ok');
           this.isLoading = false;
         },
       });
@@ -84,12 +93,13 @@ export class HomeComponent implements OnInit {
             this.currentMonthAndYear.year,
             result
           )
+          .pipe(takeUntil(this.unsubscribe$))
           .subscribe({
             next: () => {
               this.getCurrentLaunches(this.currentMonthAndYear);
             },
             error: () => {
-              this.snackBar.open('Erro ao editar lançamento', 'Ok');
+              this.snackBar.open(MessageErrors.ERROR_EDIT, 'Ok');
               this.isLoading = false;
             },
           });
@@ -112,12 +122,13 @@ export class HomeComponent implements OnInit {
             this.currentMonthAndYear.year,
             idLaunche
           )
+          .pipe(takeUntil(this.unsubscribe$))
           .subscribe({
             next: () => {
               this.getCurrentLaunches(this.currentMonthAndYear);
             },
             error: () => {
-              this.snackBar.open('Erro ao excluir lançamento', 'Ok');
+              this.snackBar.open(MessageErrors.ERROR_DELETE, 'Ok');
               this.isLoading = false;
             },
           });
@@ -131,6 +142,7 @@ export class HomeComponent implements OnInit {
 
     this.launchesService
       .getLaunchesForMonth(monthAndYear.month, monthAndYear.year)
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
         next: data => {
           this.currentLaunches = data;
@@ -138,10 +150,7 @@ export class HomeComponent implements OnInit {
           this.isLoading = false;
         },
         error: () => {
-          this.snackBar.open(
-            'Erro ao buscar lançamentos, recarregue a página!',
-            'Ok'
-          );
+          this.snackBar.open(MessageErrors.ERROR_FETCH, 'Ok');
           this.isLoading = false;
         },
       });

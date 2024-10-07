@@ -3,11 +3,11 @@
   justify-content: space-between;
 
   &.entrie {
-    border-left: 4px solid green;
+    border-left: 4px solid rgb(120, 215, 120);
   }
 
   &.exit {
-    border-left: 4px solid red;
+    border-left: 4px solid rgb(215, 120, 120);
   }
 
   .card-info {
@@ -23,11 +23,11 @@
       color: #ffffff;
 
       &.entrie {
-        background-color: green;
+        background-color: rgb(120, 215, 120);
       }
 
       &.exit {
-        background-color: red;
+        background-color: rgb(215, 120, 120);
       }
     }
 

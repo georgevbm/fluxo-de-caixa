@@ -3,32 +3,42 @@
   <div mat-dialog-content class="content">
     <div class="info">
       <span class="key">Compra:</span>
-      <span class="value">{{ dollar.bid }}</span>
+      <span class="value">{{
+        dollar.bid | currency : 'BRL' : 'symbol' : '1.2-2'
+      }}</span>
     </div>
 
     <div class="info">
       <span class="key">Venda:</span>
-      <span class="value">{{ dollar.ask }}</span>
+      <span class="value">{{
+        dollar.ask | currency : 'BRL' : 'symbol' : '1.2-2'
+      }}</span>
     </div>
 
     <div class="info">
       <span class="key">Variação:</span>
-      <span class="value">{{ dollar.varBid }}</span>
+      <span class="value">{{
+        dollar.varBid | currency : 'BRL' : 'symbol' : '1.2-2'
+      }}</span>
     </div>
 
     <div class="info">
       <span class="key">% de variação:</span>
-      <span class="value">{{ dollar.pctChange }}</span>
+      <span class="value">{{ dollar.pctChange }}%</span>
     </div>
 
     <div class="info">
       <span class="key">Máximo:</span>
-      <span class="value">{{ dollar.high }}</span>
+      <span class="value">{{
+        dollar.high | currency : 'BRL' : 'symbol' : '1.2-2'
+      }}</span>
     </div>
 
     <div class="info">
       <span class="key">Mínimo:</span>
-      <span class="value">{{ dollar.low }}</span>
+      <span class="value">{{
+        dollar.low | currency : 'BRL' : 'symbol' : '1.2-2'
+      }}</span>
     </div>
   </div>
   <div class="btn-container">
