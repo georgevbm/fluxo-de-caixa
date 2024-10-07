@@ -2,6 +2,14 @@
   display: flex;
   justify-content: space-between;
 
+  &.entrie {
+    border-left: 4px solid green;
+  }
+
+  &.exit {
+    border-left: 4px solid red;
+  }
+
   .card-info {
     display: flex;
 

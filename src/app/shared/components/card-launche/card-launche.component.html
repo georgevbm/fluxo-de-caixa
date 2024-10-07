@@ -1,4 +1,9 @@
-<mat-card class="card-launche">
+<mat-card
+  class="card-launche"
+  [ngClass]="{
+    entrie: launche.type === TypeLauncheEnum.ENTRADA,
+    exit: launche.type === TypeLauncheEnum.SAIDA
+  }">
   <div class="card-info">
     <div
       class="card-avatar"
