@@ -2,8 +2,8 @@
   <mat-form-field appearance="fill" class="field">
     <mat-label>Descrição</mat-label>
     <input
-      formControlName="description"
       matInput
+      formControlName="description"
       placeholder="Parcela do carro" />
     <mat-error *ngIf="descriptionControl.errors">
       Descrição é <strong>obrigatória</strong>
@@ -12,7 +12,12 @@
 
   <mat-form-field appearance="fill" class="field">
     <mat-label>Valor</mat-label>
-    <input formControlName="value" matInput placeholder="R$ 1.000,00" />
+    <input
+      matInput
+      currencyMask
+      [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
+      formControlName="value"
+      placeholder="R$ 1.000,00" />
     <mat-error *ngIf="valueControl.errors">
       Valor é <strong>obrigatório</strong>
     </mat-error>

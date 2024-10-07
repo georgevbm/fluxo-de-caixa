@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardLauncheComponent } from './components/card-launche/card-launche.component';
@@ -32,6 +33,7 @@ import { MonthNavigateComponent } from './components/month-navigate/month-naviga
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NgxCurrencyModule,
     MatProgressSpinnerModule,
     MatButtonModule,
     MatIconModule,

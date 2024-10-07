@@ -38,6 +38,12 @@
       "description": "Teste",
       "value": "100000002",
       "type": "saida"
+    },
+    {
+      "id": "3695",
+      "description": "Academia",
+      "value": 150,
+      "type": "saida"
     }
   ],
   "outubro2024": [
