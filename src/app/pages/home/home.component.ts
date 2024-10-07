@@ -67,8 +67,6 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-
       if (result) {
         this.launchesService
           .putLaunche(
@@ -90,13 +88,13 @@ export class HomeComponent implements OnInit {
       data: launche,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+    dialogRef.afterClosed().subscribe(idLaunche => {
+      if (idLaunche) {
         this.launchesService
           .deleteLaunche(
             this.currentMonthAndYear.month,
             this.currentMonthAndYear.year,
-            result.id
+            idLaunche
           )
           .subscribe(() => {
             this.getCurrentLaunches(this.currentMonthAndYear);

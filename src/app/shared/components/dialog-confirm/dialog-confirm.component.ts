@@ -13,14 +13,9 @@ export class DialogConfirm {
     @Inject(MAT_DIALOG_DATA) public data: Launche
   ) {}
 
-  saveOrCancel(event: Launche) {
-    const launche: Launche = {
-      id: this.data.id,
-      description: event.description,
-      type: event.type,
-      value: event.value,
-    };
+  deleteOrCancel(isCancel: boolean) {
+    console.log(this.data.id);
 
-    this.dialogRef.close(launche ? launche : undefined);
+    this.dialogRef.close(isCancel ? undefined : this.data.id);
   }
 }

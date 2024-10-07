@@ -1,4 +1,13 @@
 .toolbar {
   justify-content: center;
   box-shadow: 0px 0px 2px #000000;
+  height: 50px;
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+}
+
+::ng-deep .mat-tooltip-handset {
+  margin: 0 !important;
 }

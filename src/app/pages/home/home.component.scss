@@ -14,11 +14,25 @@
       align-items: center;
       justify-content: space-evenly;
       margin-bottom: 1rem;
+      gap: 1rem;
     }
 
     .infos {
       display: flex;
       flex-direction: column;
+      padding: 0.5rem;
+      border-radius: 8px;
+      min-width: 100px;
+      width: 100%;
+      overflow: hidden;
+
+      &.positive {
+        border: 2px solid rgb(120, 215, 120);
+      }
+
+      &.negative {
+        border: 2px solid rgb(215, 120, 120);
+      }
 
       .key {
         font-size: 16px;
@@ -31,6 +45,41 @@
         font-weight: 200;
       }
     }
+
+    .total {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem;
+      border-radius: 8px;
+      min-width: 100px;
+      width: 80%;
+      align-items: center;
+      overflow: hidden;
+
+      &.positive {
+        background-color: rgb(120, 215, 120);
+      }
+
+      &.negative {
+        background-color: rgb(215, 120, 120);
+      }
+
+      &.neutral {
+        background-color: transparent;
+        border: 2px solid #000000;
+      }
+
+      .key {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .value {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
   }
 
   .input-section {
@@ -38,9 +87,14 @@
     margin-top: 1rem;
     border-radius: 12px;
     border: 1px solid gray;
+
+    .title-inputs {
+      font-size: 1rem;
+      margin: 0 0 0.5rem 0;
+    }
   }
 
-  .title-h2 {
+  .title-launches {
     font-size: 1rem;
     margin: 1rem 0;
   }

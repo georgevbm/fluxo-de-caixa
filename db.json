@@ -28,16 +28,16 @@
   ],
   "setembro2024": [
     {
-      "id": "5156",
-      "description": "Teste",
+      "id": "9243",
+      "description": "Ajuste",
       "type": "entrada",
-      "value": "1200"
+      "value": "100000000"
     },
     {
-      "id": "5b15",
-      "description": "Empréstimo",
-      "value": "300",
-      "type": "entrada"
+      "id": "5e50",
+      "description": "Teste",
+      "value": "100000002",
+      "type": "saida"
     }
   ],
   "outubro2024": [

@@ -1,0 +1,33 @@
+.dialog-dollar {
+  .content {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 1rem;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+
+      .key {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 0.1rem;
+      }
+
+      .value {
+        font-size: 16px;
+        font-weight: 200;
+      }
+    }
+  }
+
+  .btn-container {
+    width: 100%;
+    height: fit-content;
+
+    .btn-close {
+      width: 100%;
+    }
+  }
+}

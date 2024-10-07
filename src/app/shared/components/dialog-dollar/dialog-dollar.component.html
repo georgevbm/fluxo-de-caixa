@@ -1,0 +1,43 @@
+<div class="dialog-dollar" *ngIf="quotationDollar$ | async as dollar">
+  <h1 mat-dialog-title>{{ dollar.name }}</h1>
+  <div mat-dialog-content class="content">
+    <div class="info">
+      <span class="key">Compra:</span>
+      <span class="value">{{ dollar.bid }}</span>
+    </div>
+
+    <div class="info">
+      <span class="key">Venda:</span>
+      <span class="value">{{ dollar.ask }}</span>
+    </div>
+
+    <div class="info">
+      <span class="key">Variação:</span>
+      <span class="value">{{ dollar.varBid }}</span>
+    </div>
+
+    <div class="info">
+      <span class="key">% de variação:</span>
+      <span class="value">{{ dollar.pctChange }}</span>
+    </div>
+
+    <div class="info">
+      <span class="key">Máximo:</span>
+      <span class="value">{{ dollar.high }}</span>
+    </div>
+
+    <div class="info">
+      <span class="key">Mínimo:</span>
+      <span class="value">{{ dollar.low }}</span>
+    </div>
+  </div>
+  <div class="btn-container">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-close"
+      (click)="dialogRef.close()">
+      Fechar
+    </button>
+  </div>
+</div>

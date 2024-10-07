@@ -7,14 +7,14 @@
 
   <section class="info-values">
     <div class="entries-exits">
-      <div class="infos">
+      <div class="infos positive">
         <span class="key">Entradas:</span>
         <span class="value">
           {{ totalEntries | currency : 'BRL' : 'symbol' : '1.2-2' }}
         </span>
       </div>
 
-      <div class="infos">
+      <div class="infos negative">
         <span class="key">Saídas:</span>
         <span class="value">
           {{ totalExits | currency : 'BRL' : 'symbol' : '1.2-2' }}
@@ -22,7 +22,13 @@
       </div>
     </div>
 
-    <div class="infos">
+    <div
+      class="total"
+      [ngClass]="{
+        positive: total > 0,
+        negative: total < 0,
+        neutral: total === 0
+      }">
       <span class="key">Total:</span>
       <span class="value">
         {{ total | currency : 'BRL' : 'symbol' : '1.2-2' }}
@@ -31,10 +37,12 @@
   </section>
 
   <section class="input-section">
+    <h2 class="title-inputs">Inserir lançamentos</h2>
+
     <app-form-launche (formDataEmit)="save($event)"></app-form-launche>
   </section>
 
-  <h2 class="title-h2">Lançamentos</h2>
+  <h2 class="title-launches">Lançamentos do mês</h2>
 
   <section class="launches">
     <app-card-launche

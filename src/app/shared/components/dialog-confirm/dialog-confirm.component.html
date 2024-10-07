@@ -7,6 +7,14 @@
   ?
 </div>
 <div class="btn-container">
-  <button mat-raised-button class="btn-cancel">Cancelar</button>
-  <button mat-raised-button class="btn-delete">Excluir</button>
+  <button mat-raised-button class="btn-cancel" (click)="deleteOrCancel(true)">
+    Cancelar
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="btn-delete"
+    (click)="deleteOrCancel(false)">
+    Excluir
+  </button>
 </div>

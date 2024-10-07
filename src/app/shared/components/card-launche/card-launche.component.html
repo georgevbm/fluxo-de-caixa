@@ -27,13 +27,17 @@
     <button
       mat-icon-button
       color="primary"
+      matTooltip="Editar"
+      matTooltipPosition="above"
       (click)="clickButtonEdit.emit(launche)">
       <mat-icon class="icon">edit</mat-icon>
     </button>
 
     <button
       mat-icon-button
-      color="primary"
+      color="warn"
+      matTooltip="Excluir"
+      matTooltipPosition="above"
       (click)="clickButtonDelete.emit(launche)">
       <mat-icon class="icon">delete</mat-icon>
     </button>
