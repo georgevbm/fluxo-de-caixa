@@ -14,8 +14,6 @@ export class DialogConfirm {
   ) {}
 
   deleteOrCancel(isCancel: boolean) {
-    console.log(this.data.id);
-
     this.dialogRef.close(isCancel ? undefined : this.data.id);
   }
 }

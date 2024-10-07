@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { DialogConfirm } from 'src/app/shared/components/dialog-confirm/dialog-confirm.component';
-import { DialogEditLaunche } from 'src/app/shared/components/dialog-edit-launche/dialog-edit-launche.component';
-import { TypeLauncheEnum } from 'src/app/shared/enums/type-launch.enum';
+import { DialogConfirm } from '../../shared/components/dialog-confirm/dialog-confirm.component';
+import { DialogEditLaunche } from '../../shared/components/dialog-edit-launche/dialog-edit-launche.component';
+import { TypeLauncheEnum } from '../../shared/enums/type-launch.enum';
 import {
   Launche,
   MonthAndYears,
-} from 'src/app/shared/interfaces/launches.interface';
-import { LaunchesService } from 'src/app/shared/services/launches/launches.service';
+} from '../../shared/interfaces/launches.interface';
+import { LaunchesService } from '../../shared/services/launches/launches.service';
 
 @Component({
   selector: 'app-home',

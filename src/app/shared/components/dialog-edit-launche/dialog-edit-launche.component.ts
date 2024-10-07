@@ -15,11 +15,11 @@ export class DialogEditLaunche {
   saveOrCancel(launche: Launche) {
     const newLaunche: Launche = {
       id: this.data.id,
-      description: launche?.description,
-      type: launche?.type,
-      value: launche?.value,
+      description: launche.description,
+      type: launche.type,
+      value: launche.value,
     };
 
-    this.dialogRef.close(newLaunche ? newLaunche : undefined);
+    this.dialogRef.close(newLaunche.description ? newLaunche : undefined);
   }
 }
