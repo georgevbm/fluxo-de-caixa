@@ -42,6 +42,14 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+
+    .empty-launches {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
   }
 
   ::ng-deep .mat-form-field-subscript-wrapper {

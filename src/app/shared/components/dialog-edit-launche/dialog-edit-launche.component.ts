@@ -12,14 +12,14 @@ export class DialogEditLaunche {
     @Inject(MAT_DIALOG_DATA) public data: Launche
   ) {}
 
-  saveOrCancel(event: Launche) {
-    const launche: Launche = {
+  saveOrCancel(launche: Launche) {
+    const newLaunche: Launche = {
       id: this.data.id,
-      description: event.description,
-      type: event.type,
-      value: event.value,
+      description: launche?.description,
+      type: launche?.type,
+      value: launche?.value,
     };
 
-    this.dialogRef.close(launche ? launche : undefined);
+    this.dialogRef.close(newLaunche ? newLaunche : undefined);
   }
 }

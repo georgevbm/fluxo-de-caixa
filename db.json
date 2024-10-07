@@ -29,9 +29,9 @@
   "setembro2024": [
     {
       "id": "5156",
-      "description": "George",
-      "value": "12000",
-      "type": "entrada"
+      "description": "Teste",
+      "type": "entrada",
+      "value": "1200"
     },
     {
       "id": "5b15",
@@ -51,6 +51,12 @@
       "id": "8033",
       "description": "Teste",
       "value": "8500",
+      "type": "entrada"
+    },
+    {
+      "id": "8b59",
+      "description": "George",
+      "value": "1000",
       "type": "entrada"
     }
   ],

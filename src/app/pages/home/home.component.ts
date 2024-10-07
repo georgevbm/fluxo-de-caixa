@@ -67,15 +67,19 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.launchesService
-        .putLaunche(
-          this.currentMonthAndYear.month,
-          this.currentMonthAndYear.year,
-          result
-        )
-        .subscribe(() => {
-          this.getCurrentLaunches(this.currentMonthAndYear);
-        });
+      console.log(result);
+
+      if (result) {
+        this.launchesService
+          .putLaunche(
+            this.currentMonthAndYear.month,
+            this.currentMonthAndYear.year,
+            result
+          )
+          .subscribe(() => {
+            this.getCurrentLaunches(this.currentMonthAndYear);
+          });
+      }
     });
   }
 
@@ -86,16 +90,18 @@ export class HomeComponent implements OnInit {
       data: launche,
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.launchesService
-        .deleteLaunche(
-          this.currentMonthAndYear.month,
-          this.currentMonthAndYear.year,
-          launche.id
-        )
-        .subscribe(() => {
-          this.getCurrentLaunches(this.currentMonthAndYear);
-        });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.launchesService
+          .deleteLaunche(
+            this.currentMonthAndYear.month,
+            this.currentMonthAndYear.year,
+            result.id
+          )
+          .subscribe(() => {
+            this.getCurrentLaunches(this.currentMonthAndYear);
+          });
+      }
     });
   }
 

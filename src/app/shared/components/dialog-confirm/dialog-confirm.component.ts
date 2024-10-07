@@ -5,6 +5,7 @@ import { Launche } from '../../interfaces/launches.interface';
 @Component({
   selector: 'app-dialog-confirm',
   templateUrl: 'dialog-confirm.component.html',
+  styleUrls: ['./dialog-confirm.component.scss'],
 })
 export class DialogConfirm {
   constructor(
