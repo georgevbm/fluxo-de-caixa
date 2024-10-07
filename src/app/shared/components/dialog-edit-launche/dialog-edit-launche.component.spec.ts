@@ -66,12 +66,7 @@ describe('DialogEditLauncheComponent', () => {
   });
 
   it('should close the dialog with undefined when no Launche data is provided', () => {
-    component.saveOrCancel({
-      id: 1,
-      description: '',
-      type: TypeLauncheEnum.SAIDA,
-      value: 200,
-    } as Launche);
+    component.saveOrCancel(undefined);
 
     expect(dialogRef.close).toHaveBeenCalled();
   });

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { DialogConfirm } from '../../shared/components/dialog-confirm/dialog-confirm.component';
 import { DialogEditLaunche } from '../../shared/components/dialog-edit-launche/dialog-edit-launche.component';
@@ -24,8 +25,11 @@ export class HomeComponent implements OnInit {
   totalExits = 0;
   total = 0;
 
+  isLoading = false;
+
   constructor(
     private launchesService: LaunchesService,
+    private snackBar: MatSnackBar,
     public dialog: MatDialog
   ) {}
 
@@ -46,8 +50,14 @@ export class HomeComponent implements OnInit {
         this.currentMonthAndYear.year,
         launche
       )
-      .subscribe(() => {
-        this.getCurrentLaunches(this.currentMonthAndYear);
+      .subscribe({
+        next: () => {
+          this.getCurrentLaunches(this.currentMonthAndYear);
+        },
+        error: () => {
+          this.snackBar.open('Erro ao criar lançamento', 'Ok');
+          this.isLoading = false;
+        },
       });
   }
 
@@ -74,8 +84,14 @@ export class HomeComponent implements OnInit {
             this.currentMonthAndYear.year,
             result
           )
-          .subscribe(() => {
-            this.getCurrentLaunches(this.currentMonthAndYear);
+          .subscribe({
+            next: () => {
+              this.getCurrentLaunches(this.currentMonthAndYear);
+            },
+            error: () => {
+              this.snackBar.open('Erro ao editar lançamento', 'Ok');
+              this.isLoading = false;
+            },
           });
       }
     });
@@ -96,21 +112,38 @@ export class HomeComponent implements OnInit {
             this.currentMonthAndYear.year,
             idLaunche
           )
-          .subscribe(() => {
-            this.getCurrentLaunches(this.currentMonthAndYear);
+          .subscribe({
+            next: () => {
+              this.getCurrentLaunches(this.currentMonthAndYear);
+            },
+            error: () => {
+              this.snackBar.open('Erro ao excluir lançamento', 'Ok');
+              this.isLoading = false;
+            },
           });
       }
     });
   }
 
   getCurrentLaunches(monthAndYear: MonthAndYears) {
+    this.isLoading = true;
     this.currentMonthAndYear = monthAndYear;
 
     this.launchesService
       .getLaunchesForMonth(monthAndYear.month, monthAndYear.year)
-      .subscribe(data => {
-        this.currentLaunches = data;
-        this.defineTotalValues();
+      .subscribe({
+        next: data => {
+          this.currentLaunches = data;
+          this.defineTotalValues();
+          this.isLoading = false;
+        },
+        error: () => {
+          this.snackBar.open(
+            'Erro ao buscar lançamentos, recarregue a página!',
+            'Ok'
+          );
+          this.isLoading = false;
+        },
       });
   }
 }

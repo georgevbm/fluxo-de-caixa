@@ -4,8 +4,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { of } from 'rxjs';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { of, throwError } from 'rxjs';
 import { FormLauncheComponent } from '../../shared/components/form-launche/form-launche.component';
+import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { TypeLauncheEnum } from '../../shared/enums/type-launch.enum';
 import {
   Launche,
@@ -28,11 +30,15 @@ const mockMatDialog = {
   }),
 };
 
+const matSnackBarMock = {
+  open: jest.fn(),
+};
+
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
-  const mockMonthAndYears: MonthAndYears = { month: 'January', year: '2024' };
+  const mockMonthAndYears: MonthAndYears = { month: 'Outubro', year: '2024' };
   const mockLaunches: Launche[] = [
     {
       id: 1,
@@ -50,11 +56,13 @@ describe('HomeComponent', () => {
         MatFormFieldModule,
         MatSelectModule,
         MatButtonModule,
+        MatSnackBarModule,
       ],
-      declarations: [HomeComponent, FormLauncheComponent],
+      declarations: [HomeComponent, FormLauncheComponent, LoadingComponent],
       providers: [
         { provide: LaunchesService, useValue: mockLaunchesService },
         { provide: MatDialog, useValue: mockMatDialog },
+        { provide: MatSnackBar, useValue: matSnackBarMock },
       ],
     }).compileComponents();
 
@@ -84,7 +92,7 @@ describe('HomeComponent', () => {
 
     component.getCurrentLaunches(mockMonthAndYears);
     expect(mockLaunchesService.getLaunchesForMonth).toHaveBeenCalledWith(
-      'January',
+      'Outubro',
       '2024'
     );
 
@@ -107,7 +115,7 @@ describe('HomeComponent', () => {
 
     component.save(mockNewLaunche);
     expect(mockLaunchesService.postLaunche).toHaveBeenCalledWith(
-      'January',
+      'Outubro',
       '2024',
       mockNewLaunche
     );
@@ -129,7 +137,7 @@ describe('HomeComponent', () => {
     component.openDialogEdit(mockLaunches[0]);
     expect(mockMatDialog.open).toHaveBeenCalled();
     expect(mockLaunchesService.putLaunche).toHaveBeenCalledWith(
-      'January',
+      'Outubro',
       '2024',
       mockEditedLaunche
     );
@@ -145,9 +153,76 @@ describe('HomeComponent', () => {
     component.openDialogDelete(mockLaunches[0]);
     expect(mockMatDialog.open).toHaveBeenCalled();
     expect(mockLaunchesService.deleteLaunche).toHaveBeenCalledWith(
-      'January',
+      'Outubro',
       '2024',
       1
+    );
+  });
+
+  it('should show snakbar when there is error getting data', () => {
+    mockLaunchesService.getLaunchesForMonth.mockReturnValue(
+      throwError(() => new Error('error'))
+    );
+
+    component.getCurrentLaunches(mockMonthAndYears);
+
+    expect(matSnackBarMock.open).toHaveBeenCalledWith(
+      'Erro ao buscar lançamentos, recarregue a página!',
+      'Ok'
+    );
+  });
+
+  it('should show snakbar when there is error updating', () => {
+    const mockEditedLaunche: Launche = {
+      id: 1,
+      description: 'Edited Launche',
+      type: TypeLauncheEnum.ENTRADA,
+      value: 200,
+    };
+    component.currentMonthAndYear = mockMonthAndYears;
+    mockMatDialog.open.mockReturnValue({
+      afterClosed: () => of(mockEditedLaunche),
+    });
+    mockLaunchesService.putLaunche.mockReturnValue(
+      throwError(() => new Error('error'))
+    );
+
+    component.openDialogEdit(mockLaunches[0]);
+
+    expect(matSnackBarMock.open).toHaveBeenCalledWith(
+      'Erro ao editar lançamento',
+      'Ok'
+    );
+  });
+
+  it('should show snakbar when there is error deleting', () => {
+    component.currentMonthAndYear = mockMonthAndYears;
+    mockMatDialog.open.mockReturnValue({
+      afterClosed: () => of(1),
+    });
+    mockLaunchesService.deleteLaunche.mockReturnValue(
+      throwError(() => new Error('error'))
+    );
+
+    component.openDialogDelete(mockLaunches[0]);
+
+    expect(matSnackBarMock.open).toHaveBeenCalledWith(
+      'Erro ao excluir lançamento',
+      'Ok'
+    );
+  });
+
+  it('should show snakbar when there is error creating', () => {
+    component.currentMonthAndYear = mockMonthAndYears;
+    jest
+      .spyOn(mockLaunchesService, 'postLaunche')
+      .mockReturnValue(throwError(() => new Error('error')));
+
+    component.save(mockLaunches[0]);
+
+    expect(matSnackBarMock.open).toHaveBeenCalledWith(
+      'Erro ao criar lançamento',
+      'Ok'
     );
   });
 });

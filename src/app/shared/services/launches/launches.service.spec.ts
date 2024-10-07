@@ -17,8 +17,8 @@ describe('LaunchesService', () => {
   ];
 
   const mockMonthsAndYears: MonthAndYears[] = [
-    { month: 'January', year: '2024' },
-    { month: 'February', year: '2024' },
+    { month: 'Outubro', year: '2024' },
+    { month: 'Novembro', year: '2024' },
   ];
 
   beforeEach(() => {
@@ -46,20 +46,20 @@ describe('LaunchesService', () => {
   });
 
   it('should retrieve launches for a specific month and year', () => {
-    const month = 'January';
+    const month = 'Outubro';
     const year = '2024';
 
     service.getLaunchesForMonth(month, year).subscribe(launches => {
       expect(launches).toEqual(mockLaunches);
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/january2024');
+    const req = httpMock.expectOne('http://localhost:3000/Outubro2024');
     expect(req.request.method).toBe('GET');
     req.flush(mockLaunches);
   });
 
   it('should post a new launche for a specific month and year', () => {
-    const month = 'January';
+    const month = 'Outubro';
     const year = '2024';
     const newLaunche: Launche = {
       id: 3,
@@ -72,13 +72,13 @@ describe('LaunchesService', () => {
       expect(launches).toEqual([...mockLaunches, newLaunche]);
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/january2024');
+    const req = httpMock.expectOne('http://localhost:3000/Outubro2024');
     expect(req.request.method).toBe('POST');
     req.flush([...mockLaunches, newLaunche]);
   });
 
   it('should update a launche for a specific month and year', () => {
-    const month = 'January';
+    const month = 'Outubro';
     const year = '2024';
     const updatedLaunche: Launche = {
       id: 1,
@@ -91,13 +91,13 @@ describe('LaunchesService', () => {
       expect(response).toEqual({ success: true });
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/january2024/1');
+    const req = httpMock.expectOne('http://localhost:3000/Outubro2024/1');
     expect(req.request.method).toBe('PUT');
     req.flush({ success: true });
   });
 
   it('should delete a launche for a specific month and year', () => {
-    const month = 'January';
+    const month = 'Outubro';
     const year = '2024';
     const launcheId = 1;
 
@@ -105,7 +105,7 @@ describe('LaunchesService', () => {
       expect(launches).toEqual(mockLaunches);
     });
 
-    const req = httpMock.expectOne('http://localhost:3000/january2024/1');
+    const req = httpMock.expectOne('http://localhost:3000/Outubro2024/1');
     expect(req.request.method).toBe('DELETE');
     req.flush(mockLaunches);
   });

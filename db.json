@@ -31,13 +31,13 @@
       "id": "9243",
       "description": "Ajuste",
       "type": "entrada",
-      "value": "100000000"
+      "value": 10000
     },
     {
       "id": "5e50",
-      "description": "Teste",
-      "value": "100000002",
-      "type": "saida"
+      "description": "Mudança",
+      "type": "saida",
+      "value": 1000
     },
     {
       "id": "3695",
@@ -57,12 +57,6 @@
       "id": "8033",
       "description": "Teste",
       "value": "8500",
-      "type": "entrada"
-    },
-    {
-      "id": "8b59",
-      "description": "George",
-      "value": "1000",
       "type": "entrada"
     }
   ],
