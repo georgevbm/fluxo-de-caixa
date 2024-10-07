@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, Subject, takeUntil } from 'rxjs';
@@ -17,7 +23,7 @@ import { LaunchesService } from '../../shared/services/launches/launches.service
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewChecked {
   monthsAndYears$!: Observable<MonthAndYears[]>;
   currentLaunches!: Launche[];
   currentMonthAndYear!: MonthAndYears;
@@ -31,6 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
 
   constructor(
+    private cdr: ChangeDetectorRef,
     private launchesService: LaunchesService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog
@@ -43,6 +50,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  ngAfterViewChecked() {
+    this.cdr.detectChanges();
   }
 
   private defineTotalValues() {

@@ -35,14 +35,26 @@
     },
     {
       "id": "5e50",
-      "description": "Mudança",
+      "description": "Financiamento Casa",
       "type": "saida",
-      "value": 1000
+      "value": 2000
     },
     {
       "id": "3695",
       "description": "Academia",
-      "value": 150,
+      "type": "saida",
+      "value": 200
+    },
+    {
+      "id": "b782",
+      "description": "PetShop",
+      "type": "saida",
+      "value": 250
+    },
+    {
+      "id": "31b1",
+      "description": "Mercado",
+      "value": 50,
       "type": "saida"
     }
   ],

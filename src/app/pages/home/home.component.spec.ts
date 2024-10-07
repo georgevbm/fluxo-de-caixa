@@ -1,10 +1,13 @@
+import { ChangeDetectorRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
 import { FormLauncheComponent } from '../../shared/components/form-launche/form-launche.component';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
@@ -35,6 +38,10 @@ const matSnackBarMock = {
   open: jest.fn(),
 };
 
+const mockChangeDetectorRef = {
+  detectChanges: jest.fn(),
+};
+
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
@@ -58,12 +65,16 @@ describe('HomeComponent', () => {
         MatSelectModule,
         MatButtonModule,
         MatSnackBarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
       ],
       declarations: [HomeComponent, FormLauncheComponent, LoadingComponent],
       providers: [
         { provide: LaunchesService, useValue: mockLaunchesService },
         { provide: MatDialog, useValue: mockMatDialog },
         { provide: MatSnackBar, useValue: matSnackBarMock },
+        { provide: ChangeDetectorRef, useValue: mockChangeDetectorRef },
       ],
     }).compileComponents();
 

@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Launche } from '../../interfaces/launches.interface';
 
@@ -7,7 +13,7 @@ import { Launche } from '../../interfaces/launches.interface';
   templateUrl: './form-launche.component.html',
   styleUrls: ['./form-launche.component.scss'],
 })
-export class FormLauncheComponent implements OnInit {
+export class FormLauncheComponent implements OnChanges {
   @Input() showCancelButton = false;
   @Input() formData!: Launche;
   @Output() formDataEmit = new EventEmitter<Launche>();
@@ -15,6 +21,10 @@ export class FormLauncheComponent implements OnInit {
   form!: FormGroup;
 
   constructor(private fb: FormBuilder) {}
+
+  ngOnChanges() {
+    this.populateForm();
+  }
 
   get descriptionControl() {
     return this.form.controls['description'];
@@ -30,10 +40,7 @@ export class FormLauncheComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-
-    this.setFormData('description');
-    this.setFormData('value');
-    this.setFormData('type');
+    this.populateForm();
   }
 
   get formErrors() {
@@ -52,9 +59,15 @@ export class FormLauncheComponent implements OnInit {
     });
   }
 
-  private setFormData(control: 'description' | 'value' | 'type') {
+  private populateForm() {
+    this.setControlData('description');
+    this.setControlData('value');
+    this.setControlData('type');
+  }
+
+  private setControlData(control: 'description' | 'value' | 'type') {
     this.formData
-      ? this.form.controls[control].setValue(this.formData[control])
-      : this.form.controls[control].setValue('');
+      ? this.form?.controls[control].setValue(this.formData[control])
+      : this.form?.controls[control].setValue('');
   }
 }
