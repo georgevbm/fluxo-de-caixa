@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewChecked {
   currentLaunches!: Launche[];
   currentMonthAndYear!: MonthAndYears;
 
+  resetForm = false;
   isLoading = false;
 
   totalEntries = 0;
@@ -73,6 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewChecked {
       .subscribe({
         next: () => {
           this.getCurrentLaunches(this.currentMonthAndYear);
+          this.resetForm = true;
         },
         error: () => {
           this.snackBar.open(MessageErrors.ERROR_CREATE, 'Ok');

@@ -1,3 +1,4 @@
+import { SimpleChange, SimpleChanges } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -38,6 +39,33 @@ describe('FormLauncheComponent', () => {
     expect(component.descriptionControl.value).toBe('');
     expect(component.valueControl.value).toBe('');
     expect(component.typeControl.value).toBe('');
+  });
+
+  it('should call populateForm when formData changes', () => {
+    const populateFormSpy = jest.spyOn(component, 'populateForm');
+
+    const changes: SimpleChanges = {
+      formData: new SimpleChange(null, { some: 'data' }, true),
+    };
+
+    component.ngOnChanges(changes);
+
+    expect(populateFormSpy).toHaveBeenCalled();
+  });
+
+  it('should reset form when resetForm changes', () => {
+    component.ngOnInit();
+
+    const resetSpy = jest.spyOn(component.form, 'reset');
+
+    const changes: SimpleChanges = {
+      resetForm: new SimpleChange(false, true, true),
+    };
+
+    component.ngOnChanges(changes);
+
+    expect(resetSpy).toHaveBeenCalled();
+    expect(component.resetForm).toBe(false);
   });
 
   it('should set form data when formData is provided', () => {

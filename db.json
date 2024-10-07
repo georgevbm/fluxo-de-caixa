@@ -56,6 +56,12 @@
       "description": "Mercado",
       "value": 50,
       "type": "saida"
+    },
+    {
+      "id": "a3ec",
+      "description": "Teste",
+      "value": 100,
+      "type": "entrada"
     }
   ],
   "outubro2024": [
@@ -70,6 +76,12 @@
       "description": "Teste",
       "value": "8500",
       "type": "entrada"
+    },
+    {
+      "id": "31b2",
+      "description": "Cirurgia",
+      "value": 4000,
+      "type": "saida"
     }
   ],
   "novembro2024": [

@@ -4,6 +4,7 @@ import {
   Input,
   OnChanges,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Launche } from '../../interfaces/launches.interface';
@@ -15,6 +16,7 @@ import { Launche } from '../../interfaces/launches.interface';
 })
 export class FormLauncheComponent implements OnChanges {
   @Input() showCancelButton = false;
+  @Input() resetForm = false;
   @Input() formData!: Launche;
   @Output() formDataEmit = new EventEmitter<Launche>();
 
@@ -22,8 +24,15 @@ export class FormLauncheComponent implements OnChanges {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnChanges() {
-    this.populateForm();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['formData']) {
+      this.populateForm();
+    }
+
+    if (changes['resetForm']) {
+      this.form?.reset();
+      this.resetForm = false;
+    }
   }
 
   get descriptionControl() {
@@ -59,7 +68,7 @@ export class FormLauncheComponent implements OnChanges {
     });
   }
 
-  private populateForm() {
+  populateForm() {
     this.setControlData('description');
     this.setControlData('value');
     this.setControlData('type');

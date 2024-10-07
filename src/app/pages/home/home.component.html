@@ -39,7 +39,9 @@
   <section class="input-section">
     <h2 class="title-inputs">Inserir lançamentos</h2>
 
-    <app-form-launche (formDataEmit)="save($event)"></app-form-launche>
+    <app-form-launche
+      [resetForm]="resetForm"
+      (formDataEmit)="save($event)"></app-form-launche>
   </section>
 
   <h2 class="title-launches">Lançamentos do mês</h2>
