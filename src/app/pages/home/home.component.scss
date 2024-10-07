@@ -5,11 +5,18 @@
     width: 100%;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-evenly;
 
-    .entries,
-    .exits,
-    .total {
+    .entries-exits {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      margin-bottom: 1rem;
+    }
+
+    .infos {
       display: flex;
       flex-direction: column;
 
@@ -54,5 +61,11 @@
 
   ::ng-deep .mat-form-field-subscript-wrapper {
     padding: 0;
+  }
+
+  @media screen and (max-width: 700px) {
+    .btn-container {
+      flex-direction: column-reverse;
+    }
   }
 }

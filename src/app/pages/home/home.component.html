@@ -6,21 +6,23 @@
   </app-month-navigate>
 
   <section class="info-values">
-    <div class="entries">
-      <span class="key">Entradas:</span>
-      <span class="value">
-        {{ totalEntries | currency : 'BRL' : 'symbol' : '1.2-2' }}
-      </span>
+    <div class="entries-exits">
+      <div class="infos">
+        <span class="key">Entradas:</span>
+        <span class="value">
+          {{ totalEntries | currency : 'BRL' : 'symbol' : '1.2-2' }}
+        </span>
+      </div>
+
+      <div class="infos">
+        <span class="key">Saídas:</span>
+        <span class="value">
+          {{ totalExits | currency : 'BRL' : 'symbol' : '1.2-2' }}
+        </span>
+      </div>
     </div>
 
-    <div class="exits">
-      <span class="key">Saídas:</span>
-      <span class="value">
-        {{ totalExits | currency : 'BRL' : 'symbol' : '1.2-2' }}
-      </span>
-    </div>
-
-    <div class="total">
+    <div class="infos">
       <span class="key">Total:</span>
       <span class="value">
         {{ total | currency : 'BRL' : 'symbol' : '1.2-2' }}

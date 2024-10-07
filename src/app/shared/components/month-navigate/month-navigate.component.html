@@ -1,7 +1,8 @@
 <div class="month-navigate">
   <button
     class="btn btn-previous"
-    mat-icon-button
+    [disabled]="currentIndex === 0"
+    mat-mini-fab
     color="primary"
     (click)="previous()">
     <mat-icon class="icon">arrow_back</mat-icon>
@@ -15,7 +16,12 @@
     }}
   </span>
 
-  <button class="btn btn-next" mat-icon-button color="primary" (click)="next()">
+  <button
+    class="btn btn-next"
+    [disabled]="currentIndex === monthsAndYears.length - 1"
+    mat-mini-fab
+    color="primary"
+    (click)="next()">
     <mat-icon class="icon">arrow_forward</mat-icon>
   </button>
 </div>

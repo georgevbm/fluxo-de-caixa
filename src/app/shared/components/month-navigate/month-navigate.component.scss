@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: none;
 
     .icon {
       font-size: 1.5rem !important;
@@ -22,6 +23,10 @@
 
     &:hover {
       background-color: gray;
+
+      &:disabled {
+        background-color: rgba(0, 0, 0, 0.12);
+      }
     }
   }
 }
